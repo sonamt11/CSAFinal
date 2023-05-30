@@ -10,8 +10,13 @@ public class GUI extends JFrame implements ActionListener {
     private JButton startGameButton;
 
     public GUI() {
-        catName = typeTheNameYouTextField.getText();
         createUIComponents();
+
+        setContentPane(mainPanel);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        startGameButton.addActionListener(this);
 
     }
 
@@ -24,13 +29,23 @@ public class GUI extends JFrame implements ActionListener {
         return catName;
     }
 
-    public void ActionListener() {
+    public void addActionListener() {
 
     }
 
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        JButton button = (JButton) source;
+        String buttonText = button.getText();
+
+        if (buttonText.equals("Start Game")){
+            catName = typeTheNameYouTextField.getText();
+            Simulator s = new Simulator(this);
+        }
+
+
 
     }
 }
